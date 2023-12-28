@@ -1,7 +1,7 @@
 package:
   name: kubevela
   version: 1.9.7
-  epoch: 3
+  epoch: 4
   description: KubeVela is a modern application delivery platform that makes deploying and operating applications across today's hybrid, multi-cloud environments easier, faster and more reliable
   copyright:
     - license: Apache-2.0
@@ -20,8 +20,8 @@ environment:
 pipeline:
   - uses: fetch
     with:
-      uri: https://github.com/kubevela/kubevela/archive/refs/tags/v${{package.version}}.tar.gz
       expected-sha256: fafb35add4866ac2e09488418bc04039235e6b94625000ab2647ef58ce78733f
+      uri: https://github.com/kubevela/kubevela/archive/refs/tags/v${{package.version}}.tar.gz
 
   - runs: |
       export CGO_ENABLED=0
@@ -33,20 +33,21 @@ pipeline:
 
   - uses: go/build
     with:
-      packages: ./cmd/core/main.go
       ldflags: -s -w -X github.com/oam-dev/kubevela/version.VelaVersion=${{package.version}}
       output: manager
+      packages: ./cmd/core/main.go
 
   - uses: go/build
     with:
-      packages: ./references/cmd/cli/main.go
       ldflags: -s -w -X github.com/oam-dev/kubevela/version.VelaVersion=${{package.version}}
       output: vela
+      packages: ./references/cmd/cli/main.go
 
   - uses: strip
 
 update:
   enabled: true
+  manual: false
   github:
     identifier: kubevela/kubevela
     strip-prefix: v
