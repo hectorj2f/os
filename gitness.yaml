@@ -1,6 +1,6 @@
 package:
   name: gitness
-  version: 3.0.0_beta2
+  version: 3.0.0_beta4
   epoch: 2
   description: Gitness is an Open Source developer platform with Source Control management, Continuous Integration and Continuous Delivery.
   copyright:
@@ -31,7 +31,7 @@ pipeline:
     with:
       # Hack until they cut a release
       repository: https://github.com/harness/gitness/
-      expected-commit: 1c762c6802b391ef2f3346886629bb0c1d514e24
+      expected-commit: 93c5cfd36e3739e12564416d2def52bca2777af1
       tag: v${{vars.mangled-package-version}}
 
   - uses: go/bump
@@ -42,6 +42,12 @@ pipeline:
       cd web
       yarn && yarn build && yarn cache clean
       cd ..
+
+      echo "githiness "
+      echo $GOPATH
+      echo $GOBIN
+      export GOBIN="${{targets.destdir}}"/usr/bin
+      echo $GOBIN
 
       make dep
       make tools
