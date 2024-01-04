@@ -1,7 +1,7 @@
 package:
   name: crossplane-provider-azure
   version: 0.41.0
-  epoch: 0
+  epoch: 1
   description: Official Azure Provider for Crossplane by Upbound
   copyright:
     - license: Apache-2.0
@@ -20,14 +20,18 @@ environment:
       - gzip
       - up
   environment:
-    CGO_ENABLED: 0
+    CGO_ENABLED: "0"
 
 pipeline:
   - uses: git-checkout
     with:
+      expected-commit: 29ada630d6f66a382677a39938920f6a4a6c6410
       repository: https://github.com/upbound/provider-azure
       tag: v${{package.version}}
-      expected-commit: 29ada630d6f66a382677a39938920f6a4a6c6410
+
+  - uses: go/bump
+    with:
+      deps: golang.org/x/crypto@v0.17.0
 
   - runs: |
       # `make` downloads `up`, unless we move our prebuilt `up` to where it expects it.
@@ -48,26 +52,54 @@ pipeline:
 
   - uses: strip
 
-data:
-  - name: packages
-    items:
-      family: 'provider-family-azure'
-      authorization: 'provider-azure-authorization'
-      managedidentity: 'provider-azure-managedidentity'
-      sql: 'provider-azure-sql'
-      storage: 'provider-azure-storage'
-
 subpackages:
-  - name: crossplane-provider-azure-${{range.key}}
-    range: packages
+  - name: crossplane-provider-azure-authorization
     pipeline:
       - runs: |
-          up xpkg xp-extract xpkg.upbound.io/upbound/${{range.value}}:v${{package.version}}
+          up xpkg xp-extract xpkg.upbound.io/upbound/provider-azure-authorization:v${{package.version}}
           mkdir -p "${{targets.subpkgdir}}"
           gunzip out.gz -c > "${{targets.subpkgdir}}"/package.yaml
 
+  - name: crossplane-provider-azure-family
+    pipeline:
+      - runs: |
+          up xpkg xp-extract xpkg.upbound.io/upbound/provider-family-azure:v${{package.version}}
+          mkdir -p "${{targets.subpkgdir}}"
+          gunzip out.gz -c > "${{targets.subpkgdir}}"/package.yaml
+
+  - name: crossplane-provider-azure-managedidentity
+    pipeline:
+      - runs: |
+          up xpkg xp-extract xpkg.upbound.io/upbound/provider-azure-managedidentity:v${{package.version}}
+          mkdir -p "${{targets.subpkgdir}}"
+          gunzip out.gz -c > "${{targets.subpkgdir}}"/package.yaml
+
+  - name: crossplane-provider-azure-sql
+    pipeline:
+      - runs: |
+          up xpkg xp-extract xpkg.upbound.io/upbound/provider-azure-sql:v${{package.version}}
+          mkdir -p "${{targets.subpkgdir}}"
+          gunzip out.gz -c > "${{targets.subpkgdir}}"/package.yaml
+
+  - name: crossplane-provider-azure-storage
+    pipeline:
+      - runs: |
+          up xpkg xp-extract xpkg.upbound.io/upbound/provider-azure-storage:v${{package.version}}
+          mkdir -p "${{targets.subpkgdir}}"
+          gunzip out.gz -c > "${{targets.subpkgdir}}"/package.yaml
+
+data:
+  - name: packages
+    items:
+      authorization: provider-azure-authorization
+      family: provider-family-azure
+      managedidentity: provider-azure-managedidentity
+      sql: provider-azure-sql
+      storage: provider-azure-storage
+
 update:
   enabled: true
+  manual: false
   github:
     identifier: upbound/provider-azure
     strip-prefix: v
