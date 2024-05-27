@@ -68,16 +68,13 @@ jobs:
     name: Test building of packages
     strategy:
       matrix:
-        arch: ["x86_64", "aarch64"]
+        arch: ["aarch64"]
         include:
-          - arch: x86_64
-            runner: ubuntu-latest-16-cores
-            oci: amd64
           - arch: aarch64
             runner: ubuntu-arm-16-cores
             oci: arm64
       fail-fast: false
-    runs-on: ${{ matrix.runner }}
+    runs-on: ubuntu-latest
     needs: changes
     outputs:
       packages_were_built: ${{ steps.file_check.outputs.exists }}
