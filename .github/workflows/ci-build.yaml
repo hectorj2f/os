@@ -77,7 +77,7 @@ jobs:
             runner: ubuntu-arm-16-cores
             oci: arm64
       fail-fast: false
-    runs-on: ${{ matrix.runner }}
+    runs-on: ubuntu-latest
     needs: changes
     outputs:
       packages_were_built: ${{ steps.file_check.outputs.exists }}
