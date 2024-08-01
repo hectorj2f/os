@@ -1,6 +1,6 @@
 package:
   name: atlantis
-  version: 0.28.1
+  version: 0.28.5
   epoch: 0
   description: Terraform Pull Request Automation
   copyright:
@@ -24,7 +24,7 @@ pipeline:
     with:
       repository: https://github.com/runatlantis/atlantis
       tag: v${{package.version}}
-      expected-commit: a5fdebc5e1ac754978c5d51231252a75ce1be8a2
+      expected-commit: 92d10ec4a6c51409aefca300e2158d9624733fed
 
   - uses: go/build
     with:

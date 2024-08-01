@@ -1,6 +1,9 @@
 name: Bundle Build Wolfi Packages
 
 on:
+  schedule:
+    # Deploy at 7:23 AM (PST) every day.
+    - cron: "23 15 * * *"
   workflow_dispatch:
     inputs:
       package_names:
@@ -8,6 +11,11 @@ on:
         type: string
         default: ""
         description: "comma separated list of package names to build. If empty, build all packages."
+      checkout_ref:
+        required: false
+        type: string
+        default: ""
+        description: "Ref to checkout before building"
 
 # Only run one build at a time to prevent out of sync signatures.
 concurrency: 'bundle-runner-a'
@@ -20,9 +28,9 @@ jobs:
     name: Build packages
     if: github.repository == 'wolfi-dev/os'
 
-    runs-on: ubuntu-latest-16-cores
+    runs-on: ubuntu-latest
     container:
-      image: ghcr.io/wolfi-dev/sdk:latest@sha256:92eb5fc091da6d2ea4c770e2f190d6982a7b0fdc47d3c84ae4f368a5ba9ab210
+      image: ghcr.io/wolfi-dev/sdk:latest@sha256:0385b70eda5f4cec8f6f71063e95c6f3c5b80578cd2218a12e609cf35f5dba04
 
     permissions:
       id-token: write
@@ -30,11 +38,20 @@ jobs:
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+        uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.inputs.checkout_ref }}
+
+      - name: 'Trust the github workspace'
+        run: |
+          # This is to avoid fatal errors about "dubious ownership" because we are
+          # running inside of a container action with the workspace mounted in.
+          git config --global --add safe.directory "$(pwd)"
 
       - name: Authenticate to Google Cloud
         uses: "google-github-actions/auth@71fee32a0bb7e97b4d33d548e7d957010649d8fa" # v2.1.3
@@ -97,7 +114,7 @@ jobs:
           )
 
           BUNDLE=$(wolfictl bundle \
-            --bundle-base ghcr.io/wolfi-dev/sdk:latest@sha256:92eb5fc091da6d2ea4c770e2f190d6982a7b0fdc47d3c84ae4f368a5ba9ab210 \
+            --bundle-base ghcr.io/wolfi-dev/sdk:latest@sha256:0385b70eda5f4cec8f6f71063e95c6f3c5b80578cd2218a12e609cf35f5dba04 \
             --bundle-repo "${BUNDLE_REPO}" \
             ${COMMON_FLAGS} \
             --runner bubblewrap \
@@ -116,7 +133,7 @@ jobs:
 
       - if: ${{ always() }}
         name: 'Upload trace to GitHub Artifacts'
-        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4.3.4
         with:
           name: trace-build.json
           path: /tmp/trace.json
@@ -129,7 +146,7 @@ jobs:
     needs: [build]
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+        uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
         with:
           egress-policy: audit
 

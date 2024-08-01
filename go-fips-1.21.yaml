@@ -1,6 +1,6 @@
 package:
   name: go-fips-1.21
-  version: 1.21.10
+  version: 1.21.12
   epoch: 0
   description: "the Go programming language with OpenSSL cryptography"
   copyright:
@@ -31,7 +31,7 @@ pipeline:
     with:
       repository: https://github.com/golang/go
       tag: go${{package.version}}
-      expected-commit: 752b009010df021c45f620e683ec062d22b552bf
+      expected-commit: 12e9b968bc8890b072b98facbd079ca337bd33a0
 
   - pipeline:
       - uses: patch

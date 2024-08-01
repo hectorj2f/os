@@ -1,6 +1,6 @@
 package:
   name: k8sgpt
-  version: 0.3.32
+  version: 0.3.39
   epoch: 1
   description: Giving Kubernetes Superpowers to everyone
   copyright:
@@ -23,12 +23,11 @@ pipeline:
     with:
       repository: https://github.com/k8sgpt-ai/k8sgpt
       tag: v${{package.version}}
-      expected-commit: ffd017fbd7276f6abf879aa106fc91e182f05dab
+      expected-commit: 3c08118104c3b7da4bc797269c092162c02d9a23
 
   - uses: go/bump
     with:
-      deps: helm.sh/helm/v3@v3.14.2 github.com/docker/docker@v24.0.9 github.com/aquasecurity/trivy@v0.51.2 oras.land/oras-go@v1.2.5 github.com/aquasecurity/trivy-operator@v0.21.1
-      replaces: github.com/mittwald/go-helm-client=github.com/mittwald/go-helm-client@v0.12.7
+      deps: github.com/aquasecurity/trivy@v0.51.2 github.com/aquasecurity/trivy-operator@v0.21.1 github.com/docker/docker@v27.1.0
 
   - runs: |
       make tidy

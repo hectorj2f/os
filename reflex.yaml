@@ -1,6 +1,6 @@
 package:
   name: reflex
-  version: 0.5.1
+  version: 0.5.8
   epoch: 0
   description: "Web apps in pure Python"
   copyright:
@@ -32,13 +32,12 @@ pipeline:
     with:
       repository: https://github.com/reflex-dev/reflex
       tag: v${{package.version}}
-      expected-commit: 4cfa0e3b711b5c156b68efcf2c31f42a85627257
+      expected-commit: e80315d9632e7ffe386ff4e9364aabc731764bbb
 
   - runs: |
       #Fix CVEs
       poetry add "gunicorn==22.0.0"
-      poetry remove black
-      poetry add "black==24.3.0"
+      poetry add "certifi==2024.07.04"
       poetry add "idna==3.7"
 
       poetry run pip freeze | grep -v reflex > requirements.txt

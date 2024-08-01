@@ -1,7 +1,7 @@
 package:
   name: opentofu
-  version: 1.7.1
-  epoch: 2
+  version: 1.8.0
+  epoch: 0
   copyright:
     - license: MPL-2.0
 
@@ -12,7 +12,7 @@ environment:
 pipeline:
   - uses: git-checkout
     with:
-      expected-commit: 1494e5080c38ad6ca90609d38becc47bda34735a
+      expected-commit: b1834a291027c5d4f14ca6e6acd4152bb42b6c65
       repository: https://github.com/opentofu/opentofu
       tag: v${{package.version}}
 

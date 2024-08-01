@@ -2,10 +2,13 @@
 package:
   name: binutils
   version: "2.42"
-  epoch: 2
+  epoch: 3
   description: "GNU binutils"
   copyright:
     - license: GPL-3.0-or-later
+  resources:
+    cpu: 16
+    memory: 16Gi
 
 environment:
   contents:
@@ -19,6 +22,7 @@ environment:
       - posix-libc-utils
       - texinfo
       - wolfi-baselayout
+      - zstd-dev
 
 var-transforms:
   - from: ${{package.version}}

@@ -1,6 +1,6 @@
 package:
   name: curl-rustls
-  version: 8.8.0
+  version: 8.9.1
   epoch: 0
   description: "URL retrieval utility and library"
   copyright:
@@ -30,11 +30,18 @@ environment:
       - wolfi-base
       - zlib-dev
 
+var-transforms:
+  - from: ${{package.version}}
+    match: \.
+    replace: _
+    to: mangled-package-version
+
 pipeline:
-  - uses: fetch
+  - uses: git-checkout
     with:
-      uri: https://curl.se/download/curl-${{package.version}}.tar.xz
-      expected-sha256: 0f58bb95fc330c8a46eeb3df5701b0d90c9d9bfcc42bd1cd08791d12551d4400
+      repository: https://github.com/curl/curl.git
+      tag: curl-${{vars.mangled-package-version}}
+      expected-commit: 83bedbd730d62b83744cc26fa0433d3f6e2e4cd6
 
   - runs: autoreconf -vif
 

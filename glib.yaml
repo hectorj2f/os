@@ -1,6 +1,6 @@
 package:
   name: glib
-  version: 2.80.2
+  version: 2.80.4
   epoch: 0
   description: Common C routines used by Gtk+ and other libs
   copyright:
@@ -41,10 +41,11 @@ var-transforms:
     to: mangled-package-version
 
 pipeline:
-  - uses: fetch
+  - uses: git-checkout
     with:
-      expected-sha256: b9cfb6f7a5bd5b31238fd5d56df226b2dda5ea37611475bf89f6a0f9400fe8bd
-      uri: https://download.gnome.org/sources/glib/${{vars.mangled-package-version}}/glib-${{package.version}}.tar.xz
+      repository: https://gitlab.gnome.org/GNOME/glib.git
+      tag: ${{package.version}}
+      expected-commit: 0e1647c0cb7741d5bcaac4b47e9cc610cb9d3c3d
 
   - uses: meson/configure
     with:
