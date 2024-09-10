@@ -28,11 +28,6 @@ pipeline:
     pipeline:
       - runs: |
           set -x
-          cargo update mio --precise 0.8.11
-          # mitigate GHSA-7rrj-xr53-82p7
-          cargo update tokio --precise 1.20.4
-          # mitigate GHSA-wcg3-cvx6-7396
-          cargo update chrono --precise 0.4.38
           cargo auditable build --release -vv
           mkdir -p "${{targets.destdir}}/usr/bin/"
           mv target/release/pulumi-watch "${{targets.destdir}}/usr/bin/"
