@@ -1,0 +1,19 @@
+diff --git a/web/vtadmin/package.json b/web/vtadmin/package.json
+index 6cb7fec4e..c4c724f9c 100644
+--- a/web/vtadmin/package.json
++++ b/web/vtadmin/package.json
+@@ -89,6 +89,9 @@
+     "development": [
+       "last 1 chrome version",
+       "last 1 firefox version",
+       "last 1 safari version"
+     ]
++  },
++  "resolutions": {
++    "nanoid": "^3.3.8"
+   },
+   "jest": {
+     "transformIgnorePatterns": [
+       "/!node_modules\/lodash-es/"
+     ]
+   },
