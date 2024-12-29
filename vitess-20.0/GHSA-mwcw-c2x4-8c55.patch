@@ -1,0 +1,12 @@
+diff --git a/web/vtadmin/package.json b/web/vtadmin/package.json
+index 7a8c9d4..2b3f5e9 100644
+--- a/web/vtadmin/package.json
++++ b/web/vtadmin/package.json
+@@ -89,6 +89,7 @@
+     "eslint-config-react-app": "^7.0.1",
+     "i": "^0.3.7",
+     "jsdom": "^21.1.1",
++    "nanoid": "^3.3.8",
+     "msw": "^0.36.8",
+     "npm": "^10.8.0",
+     "postcss": "^8.4.31",
