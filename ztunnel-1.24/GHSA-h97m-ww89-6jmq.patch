@@ -1,0 +1,17 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 7d20d6b07..634d9b161 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -824,9 +824,9 @@ dependencies = [
+ 
+ [[package]]
+name = "idna"
+-version = "0.5.0"
++version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "634d9b1461af396cad843f47fdba5597a4f9e6ddd4bfb6ff5d85028c25cb12f6"
++checksum = "83bb05b22920d81d73a45a5585517c1c0aa6d71272b1adb74c21ae44d21a1d06"
+dependencies = [
+ "unicode-bidi",
+ "unicode-normalization",
+]
