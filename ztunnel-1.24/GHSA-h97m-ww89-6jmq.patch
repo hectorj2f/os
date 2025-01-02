@@ -1,0 +1,13 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index f3e89a72..b4d91e33 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -87,7 +87,7 @@ backoff = "0.4.0"
+ pin-project-lite = "0.2"
+ pingora-pool = "0.1.0"
+ flurry = "0.5.0"
+-idna = "0.4.0"
++idna = "1.0.0"
+ h2 = "0.4.5"
+ http = "1.1"
+ split-iter = "0.1"
