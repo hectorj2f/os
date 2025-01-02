@@ -1,0 +1,13 @@
+diff --git a/web/vtadmin/package.json b/web/vtadmin/package.json
+index 6cb7fec4e..c4c724f9c 100644
+--- a/web/vtadmin/package.json
++++ b/web/vtadmin/package.json
+@@ -75,7 +75,7 @@
+   "dependencies": {
+     "@vitejs/plugin-react": "^4.2.1",
+     "classnames": "^2.2.6",
+-    "cross-spawn": "7.0.3",
++    "cross-spawn": "7.0.5",
+     "d3-scale": "^3.2.3",
+     "d3-shape": "^2.0.0",
+     "date-fns": "^2.16.1",
