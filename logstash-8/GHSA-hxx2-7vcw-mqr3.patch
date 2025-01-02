@@ -1,0 +1,8 @@
+--- a/Gemfile
++++ b/Gemfile
+@@ -4,4 +4,5 @@ gem "rake"
+ gem "stud"
+ gem "pry", :group => :test
+ gem 'docker-api'
++gem 'sinatra', '~> 4.1.0'
+
