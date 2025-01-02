@@ -1,0 +1,10 @@
+--- a/Gemfile.template
++++ b/Gemfile.template
+@@ -22,6 +22,7 @@ gem "faraday", "~> 1", :require => false # due elasticsearch-transport (elastic-t
+ gem "childprocess", "~> 4", :group => :build
+ gem "fpm", "~> 1", ">= 1.14.1", :group => :build # compound due to bugfix https://github.com/jordansissel/fpm/pull/1856
+ gem "gems", "~> 1", :group => :build
++gem "sinatra", "~> 4.1.0" # Pin to fixed version for GHSA-hxx2-7vcw-mqr3
+ gem "octokit", "~> 4.25", :group => :build
+ gem "rubyzip", "~> 1", :group => :build
+ gem "stud", "~> 0.0.22", :group => :build
