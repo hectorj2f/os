@@ -1,0 +1,13 @@
+diff --git a/go.mod b/go.mod
+index e9a762f3d..b4c724f9c 100644
+--- a/go.mod
++++ b/go.mod
+@@ -64,7 +64,7 @@ require (
+ 	golang.org/x/mod v0.17.0 // indirect
+ 	golang.org/x/net v0.25.0
+ 	golang.org/x/oauth2 v0.20.0
+-	google.golang.org/grpc v1.64.0
++	google.golang.org/grpc v1.64.1
+ 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.3.0
+ 	google.golang.org/grpc/examples v0.0.0-20210430044426-28078834f35b
+ 	google.golang.org/protobuf v1.34.1
