@@ -1,0 +1,10 @@
+--- a/Gemfile.template
++++ b/Gemfile.template
+@@ -35,6 +35,7 @@ gem "faraday", "~> 1", :require => false # due elasticsearch-transport (elastic-tr
+ gem "octokit", "~> 4.25", :group => :build
+ gem "rubyzip", "~> 1", :group => :build
+ gem "stud", "~> 0.0.22", :group => :build
++gem "sinatra", "~> 4.1.0" # Security fix for GHSA-hxx2-7vcw-mqr3
+ # remove fileutils declaration when start using Ruby 3.2+, by default includes `fileutils-v1.7.0`
+ # (https://git.ruby-lang.org/ruby.git/commit/?h=ruby_3_2&id=05caafb4731c796890027cafedaac59dc108a23a)
+ # note that the reason to use 1.7.0 is due to https://github.com/logstash-plugins/logstash-integration-aws/issues/28
