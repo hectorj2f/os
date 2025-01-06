@@ -5,7 +5,7 @@ package:
   # - https://github.com/facebook/buck2/blob/<VERSION>/HACKING.md
   # Get the version, and update vars.rust-version below.
   version: 20241001
-  epoch: 2
+  epoch: 3
   description: "Build system, successor to Buck"
   copyright:
     - license: MIT
@@ -39,6 +39,10 @@ pipeline:
       repository: https://github.com/facebook/buck2
       expected-commit: 66770ab8db7f9545a0772328e28e740717a6eb72
       tag: ${{vars.mangled-package-version}}
+
+  - uses: patch
+    with:
+      patches: GHSA-h97m-ww89-6jmq.patch
 
   - uses: patch
     with:
