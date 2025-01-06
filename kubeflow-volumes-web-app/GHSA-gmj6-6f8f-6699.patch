@@ -1,0 +1,7 @@
+diff --git a/components/crud-web-apps/volumes/backend/requirements.txt b/components/crud-web-apps/volumes/backend/requirements.txt
+index 83d61832b..e4b3a9c12 100644
+--- a/components/crud-web-apps/volumes/backend/requirements.txt
++++ b/components/crud-web-apps/volumes/backend/requirements.txt
+@@ -1,2 +1,3 @@
+ gunicorn
++jinja2>=3.1.5
