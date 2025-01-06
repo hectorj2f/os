@@ -1,0 +1,12 @@
+diff --git a/airflow.yaml b/airflow.yaml
+index c083e456..f02c6cb3 100644
+--- a/airflow.yaml
++++ b/airflow.yaml
+@@ -2,7 +2,7 @@
+ package:
+   name: airflow
+-  version: 2.10.4
++  version: 2.10.5
+   epoch: 2
+   description: Platform to programmatically author, schedule, and monitor workflows
+   options:
