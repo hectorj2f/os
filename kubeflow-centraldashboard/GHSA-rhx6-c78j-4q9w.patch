@@ -1,0 +1,12 @@
+diff --git a/components/centraldashboard/package.json b/components/centraldashboard/package.json
+index 7d2e8f3..9a4b1f2 100644
+--- a/components/centraldashboard/package.json
++++ b/components/centraldashboard/package.json
+@@ -164,6 +164,7 @@
+         "monorepo-symlink-test": "^0.0.0",
+         "tough-cookie": "^4.1.3",
+         "ws": "^8.17.1",
++        "path-to-regexp": "^3.2.0",
+         "follow-redirects": "^1.15.6"
+     },
+     "devDependencies": {
