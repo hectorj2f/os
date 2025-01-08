@@ -1,0 +1,11 @@
+diff --git a/Gemfile.template b/Gemfile.template
+index abc123..def456 100644
+--- a/Gemfile.template
++++ b/Gemfile.template
+@@ -24,6 +24,7 @@ gem "murmurhash3", "= 0.1.6" # Pins until version 0.1.7-java is released
+ gem "thwait"
+ gem "bigdecimal", "~> 3.1"
++gem "sinatra", "4.1.0" # Security fix for GHSA-hxx2-7vcw-mqr3
+ 
+ gem "rubocop", :group => :development
+ gem "belzebuth", :group => :development
