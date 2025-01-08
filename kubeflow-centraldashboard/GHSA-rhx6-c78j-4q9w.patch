@@ -1,0 +1,16 @@
+diff --git a/components/centraldashboard/package.json b/components/centraldashboard/package.json
+index f8d5e3a..b4c9e2d 100644
+--- a/components/centraldashboard/package.json
++++ b/components/centraldashboard/package.json
+@@ -166,6 +166,9 @@
+         "webpack-cli": "^4.10.0",
+         "webpack-dev-server": "^4.15.2"
+     },
+     "overrides": {
++        "path-to-regexp": "^6.2.1",
+         "pug-loader": {
+             "pug": "^3.0.1"
+-        }
++        }
+     }
+ }
