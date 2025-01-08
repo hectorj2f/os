@@ -1,7 +1,7 @@
 package:
   name: mlflow
   version: 2.19.0
-  epoch: 1
+  epoch: 2
   description: Open source platform for the machine learning lifecycle
   copyright:
     - license: Apache-2.0
@@ -38,6 +38,10 @@ pipeline:
       expected-commit: ad1710112c3ff0e05f12833ea3b477a933438940
       repository: https://github.com/mlflow/mlflow
       tag: v${{package.version}}
+
+  - uses: patch
+    with:
+      patches: GHSA-q2x7-8rv6-6q7h.patch
 
   - runs: |
       # Build UI
