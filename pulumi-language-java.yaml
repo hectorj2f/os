@@ -23,6 +23,7 @@ pipeline:
     with:
       ldflags: -X github.com/pulumi/pulumi-java/pkg/version.Version=v${{package.version}}
       modroot: pkg
+      tidy: true
       output: pulumi-language-java
       packages: ./cmd/pulumi-language-java
 
