@@ -1,0 +1,12 @@
+diff --git a/image/Gemfile b/image/Gemfile
+index 94cfa21..b3e5291 100644
+--- a/image/Gemfile
++++ b/image/Gemfile
+@@ -14,7 +14,7 @@ gem 'fluent-plugin-datadog', "0.14.2"
+ gem 'fluent-plugin-elasticsearch', "5.3.0"
+ gem 'fluent-plugin-opensearch', "1.1.0"
+-gem 'fluent-plugin-gelf-hs', "1.0.8"
++gem 'fluent-plugin-gelf-hs', "1.1.0"
+ gem 'fluent-plugin-grafana-loki', "1.2.20"
+ gem 'fluent-plugin-grok-parser', "2.6.2"
+ gem 'fluent-plugin-json-in-json-2', "1.0.2"
