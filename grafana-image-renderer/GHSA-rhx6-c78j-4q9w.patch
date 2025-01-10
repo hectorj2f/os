@@ -1,0 +1,11 @@
+--- a/package.json
++++ b/package.json
+@@ -35,7 +35,7 @@
+     "@puppeteer/browsers": "^2.3.1",
+     "chokidar": "^3.5.2",
+     "dompurify": "^2.5.4",
+-    "express": "^4.21.1",
++    "express": "^4.21.2",
+     "express-prom-bundle": "^6.5.0",
+     "jimp": "^0.22.12",
+     "jsdom": "20.0.0",
