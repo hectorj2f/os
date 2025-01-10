@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index 6cb7fec4e..c4c724f9c 100644
+--- a/package.json
++++ b/package.json
+@@ -84,6 +84,7 @@
+     "typescript": "4.8.3"
+   },
+   "resolutions": {
++    "cross-spawn": "^7.0.5",
+     "xml2js": "^0.6.2"
+   },
+   "lint-staged": {
