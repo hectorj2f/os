@@ -1,0 +1,16 @@
+diff --git a/web/vtadmin/package.json b/web/vtadmin/package.json
+index 3b4c789..4e2f891 100644
+--- a/web/vtadmin/package.json
++++ b/web/vtadmin/package.json
+@@ -111,6 +111,9 @@
+     "development": [
+       "last 1 firefox version",
+       "last 1 safari version"
+-    ]
++    ],
++    "overrides": {
++      "cross-spawn": "7.0.5"
++    }
+   },
+   "jest": {
+     "transformIgnorePatterns": [
