@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index 6cb7fec4e154faa0a4a3fee4b33dfef91b9870d9..c4c724f9c8b2d9a5f6e8d7c3b2a1f0e9d8c7b6a 100644
+--- a/package.json
++++ b/package.json
+@@ -65,6 +65,7 @@
+     "**/chokidar": "^3.5.3",
+     "**/d3-scale/**/d3-color": "npm:@elastic/d3-color@2.0.1",
+     "**/globule/minimatch": "^3.1.2",
++    "**/cross-spawn": "^6.0.6",
+     "**/hoist-non-react-statics": "^3.3.2",
+     "**/isomorphic-fetch/node-fetch": "^2.6.7",
+     "**/remark-parse/trim": "1.0.1",

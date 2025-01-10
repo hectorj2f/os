@@ -1,7 +1,7 @@
 package:
   name: kibana-8
   version: 8.16.1
-  epoch: 2
+  epoch: 3
   description: Your window into the Elastic Stack
   copyright:
     - license: Apache-2.0
@@ -34,9 +34,9 @@ environment:
       - jq
       - node-gyp
       - nvm
-      - yarn
       - python3
       - wget
+      - yarn
       - yq
 
 pipeline:
@@ -45,6 +45,10 @@ pipeline:
       repository: https://github.com/elastic/kibana
       tag: v${{package.version}}
       expected-commit: c8b46e87c4d61de4fe046ce5ea0a0b68aad5acf9
+
+  - uses: patch
+    with:
+      patches: GHSA-3xgq-45jj-v275.patch
 
   - uses: patch
     with:
