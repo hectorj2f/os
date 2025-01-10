@@ -1,7 +1,7 @@
 package:
   name: tileserver-gl
   version: 5.0.0
-  epoch: 5
+  epoch: 6
   description: Vector and raster maps with GL styles. Server side rendering by MapLibre GL Native. Map tile server for MapLibre GL JS, Android, iOS, Leaflet, OpenLayers, GIS via WMTS, etc.
   copyright:
     - license: BSD-2-Clause
@@ -56,15 +56,18 @@ pipeline:
       cherry-picks: |
         master/93f72c1fe7671429f234c853e81f202e635522e9: GHSA-3xgq-45jj-v275 fix. Bumps cross-spawn to fix version.
 
+  - uses: patch
+    with:
+      patches: GHSA-rhx6-c78j-4q9w.patch
+
   # patch and install npm dependencies
   - uses: patch
     with:
       patches: package-json.patch
 
-  # Enforce dependencies via overrides, more information here: https://github.com/chainguard-dev/enterprise-packages/pull/11547
-
   # install packages
-  - working-directory: app
+  - working-directory
+    # Enforce dependencies via overrides, more information here: https://github.com/chainguard-dev/enterprise-packages/pull/11547: app
     runs: |
       npm install --omit=dev
 

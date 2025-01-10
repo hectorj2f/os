@@ -1,0 +1,14 @@
+diff --git a/package.json b/package.json
+index 6cb7fec4e..c4c724f9c 100644
+--- a/package.json
++++ b/package.json
+@@ -187,6 +187,9 @@
+     "@maplibre/maplibre-gl-style-spec": "^20.3.1",
+     "minimatch": "^9.0.4",
+     "npm-run-all": "^4.1.5",
++    "resolutions": {
++      "path-to-regexp": "0.1.12"
++    },
+     "simple-git": "^3.25.0"
+   },
+   "devDependencies": {
