@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index ff5878f38..4c93922c8 100644
+--- a/package.json
++++ b/package.json
+@@ -76,6 +76,7 @@
+   "pnpm": {
+     "overrides": {
+       "nth-check": "2.1.1",
++      "next": "^15.1.2",
+       "nanoid": "3.3.8",
+       "postcss": "^8.4.47",
+       "elliptic" : "^6.6.0",
