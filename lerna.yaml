@@ -22,6 +22,7 @@ environment:
       - nodejs
       - npm
       - jq
+      - rsync
 
 pipeline:
   - uses: git-checkout
@@ -29,15 +30,20 @@ pipeline:
      repository: https://github.com/lerna/lerna
      expected-commit: 7d1338d884a3e334953ba1ca74924ffa09a60530
      tag: v${{package.version}}
-     destination: /home/build/melange-out/lerna/usr/local
 
-  - name: npm install
+  - name: fix express
     runs: |
       resolutions='{
             "express": "^4.19.2",
       }'
-      jq --argjson resolutions "$resolutions" '.resolutions += $resolutions' /home/build/melange-out/lerna/usr/local/package.json > temp.json && mv temp.json /home/build/melange-out/lerna/usr/local/package.json
-            
+      jq --argjson resolutions "$resolutions" '.resolutions += $resolutions' package.json > temp.json && mv temp.json package.json
+
+  - name: rsync
+    runs: |
+      mkdir -p ${{targets.destdir}}/usr/local/
+      rsync -av --exclude .cache --exclude .package-lock.json --exclude website --exclude e2e --exclude __fixtures__ . ${{targets.destdir}}/usr/local/
+  - name: npm install
+    runs: |
       npm install -prefix ${{targets.destdir}}/usr/local/
 
 update:
