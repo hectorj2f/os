@@ -1,7 +1,7 @@
 package:
   name: lerna
-  version: 8.1.8
-  epoch: 1
+  version: 8.1.9
+  epoch: 10
   description: "Lerna is a fast, modern build system for managing and publishing multiple JavaScript/TypeScript packages from the same repository."
   copyright:
     - license: MIT
@@ -21,14 +21,24 @@ environment:
       - ca-certificates-bundle
       - nodejs
       - npm
+      - jq
 
 pipeline:
+  - uses: git-checkout
+    with:
+     repository: https://github.com/lerna/lerna
+     expected-commit: 7d1338d884a3e334953ba1ca74924ffa09a60530
+     tag: v${{package.version}}
+     destination: ${{targets.destdir}}/usr/local/
+
   - name: npm install
     runs: |
-      npm install -g ${{package.name}}@${{package.version}} -prefix ${{targets.destdir}}/usr/local/
-
-      # https://github.com/browserify/resolve/issues/288
-      sed -i 's/monorepo-symlink-test/false-positive/g' ${{targets.destdir}}/usr/local/lib/node_modules/lerna/node_modules/resolve/test/resolver/multirepo/package.json
+      resolutions='{
+            "express": "^4.19.2",
+      }'
+      jq --argjson resolutions "$resolutions" '.resolutions += $resolutions' ${{targets.destdir}}/usr/local/package.json > temp.json && mv temp.json ${{targets.destdir}}/usr/local/package.json
+            
+      npm install -prefix ${{targets.destdir}}/usr/local/
 
 update:
   enabled: true
