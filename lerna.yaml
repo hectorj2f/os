@@ -37,6 +37,7 @@ pipeline:
             "express": "^4.19.2",
       }'
       jq --argjson resolutions "$resolutions" '.resolutions += $resolutions' package.json > temp.json && mv temp.json package.json
+      cat package.json
 
   - name: rsync
     runs: |
