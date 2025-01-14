@@ -44,7 +44,6 @@ pipeline:
       # but that fails to cleanly cherry-pick. Drop this when we bump to > 0.22.3
       poetry add "aiohttp==3.10.11"
       poetry add "pyOpenSSL@^24.0.0"
-      poetry add "cryptography@^43.0.1"
       # CVE-2024-35195: requests
       # Upstream bumped requests to 2.32.3 in:
       #   https://github.com/thelastpickle/cassandra-medusa/commit/f1013d8e6dbdc05496095d69b36b3210448d20b3,
