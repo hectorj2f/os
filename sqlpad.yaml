@@ -1,13 +1,13 @@
 package:
   name: sqlpad
   version: 7.4.1 # when updating check the patch below as it contains dependency version updates which may downgrade if upstream upgrades them
-  epoch: 1
+  epoch: 0
   description: Web-based SQL editor. Legacy project in maintenance mode.
   copyright:
     - license: MIT
   dependencies:
     runtime:
-      - nodejs-20 # currently needs node 20, to check in the future see, https://github.com/sqlpad/sqlpad/blob/master/.nvmrc
+      - nodejs-18 # currently needs node 20, to check in the future see, https://github.com/sqlpad/sqlpad/blob/master/.nvmrc
       - yarn
 
 environment:
@@ -16,8 +16,8 @@ environment:
       - build-base
       - busybox
       - jq
-      - nodejs
-      - python-3.11
+      - nodejs-18
+      - python3
       - yarn
 
 pipeline:
@@ -29,6 +29,16 @@ pipeline:
 
   - working-directory: /home/build/server
     runs: |
+      # Create "resolutions" section of package.json
+      jq '.resolutions |= (if . then . else {} end)' package.json > temp.json && mv temp.json package.json
+      for override in '"semver"="6.3.1"' '"@node-saml/node-saml"="4.0.5"' '"ip"="2.0.1"' '"jose"="4.15.5"' '"xlsx"="https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"' '"tar"="6.2.1"'; do
+        jq ".resolutions.${override}" package.json > temp.json && mv temp.json package.json
+      done
+
+      for dep in '"express"="4.21.1"'; do
+        jq ".dependencies.${dep}" package.json > temp.json && mv temp.json package.json
+      done
+
       yarn install
 
   - uses: patch
