@@ -7,7 +7,7 @@ package:
     - license: MIT
   dependencies:
     runtime:
-      - nodejs
+      - nodejs-16
       - npm
       - typescript
 
@@ -16,7 +16,7 @@ environment:
     packages:
       - busybox
       - ca-certificates-bundle
-      - nodejs
+      - nodejs-16
       - npm
       - rsync
 
