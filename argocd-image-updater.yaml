@@ -1,7 +1,7 @@
 package:
   name: argocd-image-updater
   version: 0.15.2
-  epoch: 0
+  epoch: 1
   description: Automatic container image update for Argo CD
   copyright:
     - license: Apache-2.0
@@ -20,6 +20,10 @@ pipeline:
       repository: https://github.com/argoproj-labs/argocd-image-updater
       tag: v${{package.version}}
       expected-commit: abc00725c94c1f8657b53e688be2e4ee8a5e7e57
+
+  - uses: patch
+    with:
+      patches: GHSA-r9px-m959-cxf4.patch
 
   - uses: go/bump
     with:
