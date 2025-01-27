@@ -54,11 +54,6 @@ pipeline:
       expected-commit: 6cda7a0b384940b781838be7415b2ae448edcd29
       destination: app
 
-  # patch and install npm dependencies
-  - uses: patch
-    with:
-      patches: package-json.patch
-
   # install packages
   - working-directory: app
     runs: |
